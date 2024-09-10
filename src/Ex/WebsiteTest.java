@@ -33,16 +33,20 @@ public class WebsiteTest {
 	String LogoutPage="https://magento.softwaretestingboard.com/customer/account/logout/";
 	
 	String LoginEmailAddress= "";
+	
+	
 	@BeforeTest
 	public void mySetup() {
 		driver.manage().window().maximize();
 		driver.get(myWebsite);
 
-	//	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		//we added this after the forth test 
+		//element not found -> managing for timeout (thread sleep)
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
 	}
 
-	@Test
+	@Test(priority=1,enabled=false)
 	public void CreateAnAccount() {
 
 		// xpath
@@ -123,7 +127,7 @@ public class WebsiteTest {
 	}
 
 
-@Test(priority =2)
+@Test(priority =2,enabled=false)
 public void  Logout() {
 	//since the logout button has a link inside its element 
 	//we can use it in testing whixch is easy without any webelement 
@@ -132,7 +136,7 @@ public void  Logout() {
 	
 }
 
-@Test (priority =3)
+@Test (priority =3,enabled=false)
 public void LoginTest() {
 	
 	WebElement LoginPage=driver.findElement(By.linkText("Sign In"));
@@ -147,7 +151,88 @@ public void LoginTest() {
 //	WebElement LoginButton= driver.findElement(By.className("action login primary"));
 	WebElement LoginButton= driver.findElement(By.cssSelector(".action.login.primary"));
 	LoginButton.click();
+	
 }
+
+@Test(priority=4, enabled=true)
+public void addMenItem() throws InterruptedException {
+	
+	WebElement Mens= driver.findElement(By.cssSelector("a[id='ui-id-5'] span:nth-child(2)"));
+	Mens.click();
+	
+//	//we used here .findElement (one element)
+//	WebElement ItemsContainers= driver.findElement(By.cssSelector(".product-items.widget-product-grid"));
+//	
+//	//here we used .findElements (multiple elements) 
+//	//int x= ItemsContainers.findElements(By.tagName("li")).size();
+//	
+//	List<WebElement> Items=ItemsContainers.findElements(By.tagName("li"));
+//	
+////	System.out.println(Items.size());
+//	
+//	//this code mo zabet 
+////	Items.get(0).click();
+////	
+////	driver.navigate().back();
+////	Thread.sleep(3000);
+////    Items.get(1).click();
+//
+//	for(int i =0; i<Items.size();i++) {
+//		Items.get(rand.nextInt(Items.size())).click();
+//	}
+//	
+	//----note:----
+		//theres no need for for loop or a loop to select any element 
+		//we just have to deal with css selector or the web elements 
+	
+	
+	//----------------------------------------
+	//selecting a random item 
+	WebElement productITemsContainer= driver.findElement(By.className("product-items"));
+	
+	List<WebElement> AllItems = productITemsContainer.findElements(By.tagName("li"));
+
+	int totalNumberOfItems = AllItems.size();
+	int randomItem = rand.nextInt(totalNumberOfItems);
+
+	AllItems.get(randomItem).click();
+
+	
+	//selecting a random size 
+	WebElement theContainerOfSizes = driver.findElement(By.cssSelector(".swatch-attribute-options.clearfix"));;
+
+	String[] sizes = { "33", "34", "36", "37" };
+	
+	List<WebElement> ListOfSizes = theContainerOfSizes.findElements(By.className("swatch-option"));
+	int numberofSizes = ListOfSizes.size();
+
+	int randomSize = rand.nextInt(numberofSizes);
+	ListOfSizes.get(randomSize).click();
+	
+	
+	//selecting a random color 
+	WebElement ColorsContainers= driver.findElement(By.cssSelector("div[class='swatch-attribute color'] div[role='listbox']"));
+	//the colors are bunch of colors so they are list 
+	List<WebElement> ColorsList = ColorsContainers.findElements(By.tagName("div"));
+	int NumofColors=ColorsList.size();
+	int randomColor=rand.nextInt(NumofColors);
+	ColorsList.get(randomColor).click();
+	
+	
+	//adding the ite to the cart
+	WebElement AddTOCartButton= driver.findElement(By.id("product-addtocart-button"));
+	AddTOCartButton.click();
+	
+	//msg
+	WebElement MessageAdded = driver.findElement(By.cssSelector(".message-success.success.message"));
+	System.out.println(MessageAdded.getText().contains("You added"));
+	
+	//actual/expected 
+	Assert.assertEquals(MessageAdded.getText().contains("You added"), true);
+	
+}
+	
+
 
 
 }
