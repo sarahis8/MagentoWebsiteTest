@@ -15,7 +15,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.devtools.v125.domstorage.model.Item;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -46,7 +45,7 @@ public class WebsiteTest {
 
 	}
 
-	@Test(priority=1,enabled=false)
+	@Test(priority=1,enabled=true)
 	public void CreateAnAccount() {
 
 		// xpath
@@ -89,7 +88,7 @@ public class WebsiteTest {
 	
 	String first_name=Firstname[randfirstname];
 	String last_name=Lastname[randlastname];
-	int randomnumber=rand.nextInt(1234);
+	int randomnumber=rand.nextInt(9767);
 	String domain="@gmail.com";
 //	String []domains= {};
 	
@@ -105,7 +104,7 @@ public class WebsiteTest {
 	
 	//now to create account we need to submit the information 
 	//click the create account button 
-	createAccountButton.click();
+    createAccountButton.click();
 	
 	
 	//for login purposes 
@@ -115,28 +114,36 @@ public class WebsiteTest {
 	
 	//popping msg to the customer 
 	
-//	WebElement MessageAsWebElement = driver.findElement(By.className("messages"));
-//
-//	String TheActualMessage = MessageAsWebElement.getText();
-//
-//	String ExpectedMessage = "Thankyou testing shit over here idkk help ";
-//
-//	Assert.assertSame(TheActualMessage, ExpectedMessage);
-//	
+	WebElement MessageAsWebElement = driver.findElement(By.className("messages"));
+
+	String TheActualMessage = MessageAsWebElement.getText();
+
+	String ExpectedMessage = "Thank you for registering with Main Website Store.";
+
+	Assert.assertSame(TheActualMessage, ExpectedMessage);
+
 	
 	}
 
 
-@Test(priority =2,enabled=false)
+@Test(priority =2,enabled=true)
 public void  Logout() {
 	//since the logout button has a link inside its element 
-	//we can use it in testing whixch is easy without any webelement 
+	//we can use it in testing which is easy without any webelement 
 	
 	driver.get(LogoutPage);
 	
+	
+	
+	WebElement LogoutMessage = driver.findElement(By.xpath("//span[@data-ui-id='page-title-wrapper']"));
+
+	String ActualMsg = LogoutMessage.getText();
+	String ExpectedMsg = "You are signed out";
+
+	Assert.assertEquals(ActualMsg, ExpectedMsg);
 }
 
-@Test (priority =3,enabled=false)
+@Test (priority =3,enabled=true)
 public void LoginTest() {
 	
 	WebElement LoginPage=driver.findElement(By.linkText("Sign In"));
@@ -152,9 +159,16 @@ public void LoginTest() {
 	WebElement LoginButton= driver.findElement(By.cssSelector(".action.login.primary"));
 	LoginButton.click();
 	
+	String WelcomeMessage = driver.findElement(By.className("logged-in")).getText();
+
+	boolean ActualValue = WelcomeMessage.contains("Welcome");
+	boolean ExpectedValue = true;
+
+	Assert.assertEquals(ActualValue, ExpectedValue);
+	
 }
 
-@Test(priority=4, enabled=true)
+@Test(priority=4, enabled=true	)
 public void addMenItem() throws InterruptedException {
 	
 	WebElement Mens= driver.findElement(By.cssSelector("a[id='ui-id-5'] span:nth-child(2)"));
@@ -219,17 +233,17 @@ public void addMenItem() throws InterruptedException {
 	ColorsList.get(randomColor).click();
 	
 	
-	//adding the ite to the cart
+	//adding the item to the cart
 	WebElement AddTOCartButton= driver.findElement(By.id("product-addtocart-button"));
 	AddTOCartButton.click();
 	
 	//msg
-	WebElement MessageAdded = driver.findElement(By.cssSelector(".message-success.success.message"));
+	WebElement MessageAdded = driver.findElement(By.className("message-success"));
+
 	System.out.println(MessageAdded.getText().contains("You added"));
-	
-	//actual/expected 
+
 	Assert.assertEquals(MessageAdded.getText().contains("You added"), true);
-	
+
 }
 	
 
