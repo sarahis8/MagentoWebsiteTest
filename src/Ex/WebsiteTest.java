@@ -19,6 +19,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.google.common.util.concurrent.RateLimiter;
+
 public class WebsiteTest {
 
 	WebDriver driver = new ChromeDriver();
@@ -45,7 +47,7 @@ public class WebsiteTest {
 
 	}
 
-	@Test(priority=1,enabled=true)
+	@Test(priority=1,enabled=false)
 	public void CreateAnAccount() {
 
 		// xpath
@@ -126,7 +128,7 @@ public class WebsiteTest {
 	}
 
 
-@Test(priority =2,enabled=true)
+@Test(priority =2,enabled=false)
 public void  Logout() {
 	//since the logout button has a link inside its element 
 	//we can use it in testing which is easy without any webelement 
@@ -143,7 +145,7 @@ public void  Logout() {
 	Assert.assertEquals(ActualMsg, ExpectedMsg);
 }
 
-@Test (priority =3,enabled=true)
+@Test (priority =3,enabled=false)
 public void LoginTest() {
 	
 	WebElement LoginPage=driver.findElement(By.linkText("Sign In"));
@@ -168,7 +170,7 @@ public void LoginTest() {
 	
 }
 
-@Test(priority=4, enabled=true	)
+@Test(priority=4, enabled=false	)
 public void addMenItem() throws InterruptedException {
 	
 	WebElement Mens= driver.findElement(By.cssSelector("a[id='ui-id-5'] span:nth-child(2)"));
@@ -215,7 +217,7 @@ public void addMenItem() throws InterruptedException {
 	//selecting a random size 
 	WebElement theContainerOfSizes = driver.findElement(By.cssSelector(".swatch-attribute-options.clearfix"));;
 
-	String[] sizes = { "33", "34", "36", "37" };
+//	String[] sizes = { "33", "34", "36", "37" };
 	
 	List<WebElement> ListOfSizes = theContainerOfSizes.findElements(By.className("swatch-option"));
 	int numberofSizes = ListOfSizes.size();
@@ -247,6 +249,101 @@ public void addMenItem() throws InterruptedException {
 }
 	
 
+@Test(priority=5, enabled=true 	)
+public void addWomenItem() throws InterruptedException {
+	
+	WebElement Women= driver.findElement(By.id("ui-id-4"));
+	Women.click();
+	
 
+	//----------------------------------------
+	//selecting a random item 
+	WebElement productITemsContainer= driver.findElement(By.className("product-items"));
+	
+	List<WebElement> AllItems = productITemsContainer.findElements(By.tagName("li"));
+
+	int totalNumberOfItems = AllItems.size();
+	int randomItem = rand.nextInt(totalNumberOfItems);
+
+	AllItems.get(randomItem).click();
+
+	
+	//selecting a random size 
+	WebElement theContainerOfSizes = driver.findElement(By.cssSelector(".swatch-attribute-options.clearfix"));;
+
+	
+	List<WebElement> ListOfSizes = theContainerOfSizes.findElements(By.className("swatch-option"));
+	int numberofSizes = ListOfSizes.size();
+
+	int randomSize = rand.nextInt(numberofSizes);
+	ListOfSizes.get(randomSize).click();
+	
+	
+	//selecting a random color 
+	WebElement ColorsContainers= driver.findElement(By.cssSelector("div[class='swatch-attribute color'] div[role='listbox']"));
+	//the colors are bunch of colors so they are list 
+	List<WebElement> ColorsList = ColorsContainers.findElements(By.tagName("div"));
+	int NumofColors=ColorsList.size();
+	int randomColor=rand.nextInt(NumofColors);
+	ColorsList.get(randomColor).click();
+	
+	
+	//adding the item to the cart
+	WebElement AddTOCartButton= driver.findElement(By.id("product-addtocart-button"));
+	AddTOCartButton.click();
+	
+	//msg
+	WebElement MessageAdded = driver.findElement(By.className("message-success"));
+
+	System.out.println(MessageAdded.getText().contains("You added"));
+
+	Assert.assertEquals(MessageAdded.getText().contains("You added"), true);
+	
+	
+	//Review Section 
+	
+	WebElement ReviewSection=driver.findElement(By.id("tab-label-reviews-title"));
+	ReviewSection.click();
+	
+	  //stars
+	WebElement StarsRating = driver.findElement(By.cssSelector(".control.review-control-vote"));
+	//to find how many stars are there
+	 //System.out.println(RatingStars.findElements(By.tagName("label")).size() + "*****************");
+	 //StarsRating.findElements(By.tagName("label")).get(2).click();
+	
+	
+	
+	
+	//we can see that java script did the clicking rate for this test 
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("window.scrollTo(0,1200)");
+	String[] ids = { "Rating_1", "Rating_2", "Rating_3", "Rating_4", "Rating_5" };
+	int randomIndex = rand.nextInt(ids.length);
+	WebElement element = driver.findElement(By.id(ids[randomIndex]));
+	((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+	
+	
+	
+	
+	WebElement nickname= driver.findElement(By.id("nickname_field"));
+	nickname.sendKeys("sarahsarah");
+	WebElement Summary= driver.findElement(By.id("summary_field"));
+	Summary.sendKeys("idkidkdiddkdddj");
+	WebElement review = driver.findElement(By.id("review_field"));
+	review.sendKeys("hello this is a test");
+	
+	
+	WebElement SubmitReview= driver.findElement(By.cssSelector(".action.submit.primary"));
+	SubmitReview.click();
+	
+	String actualTextforReview = driver.findElement(By.cssSelector(".message-success.success.message")).getText();
+	String expectedTextforReview = "You submitted your review for moderation.";
+
+	Assert.assertEquals(actualTextforReview, expectedTextforReview);
+	
+	
+	
+	
+}
 
 }

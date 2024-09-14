@@ -1,114 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="4" passed="2" failed="2" skipped="0">
+<testng-results ignored="4" total="5" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-09-14T15:45:10 EET" name="Default suite" finished-at="2024-09-14T15:45:31 EET" duration-ms="20988">
+  <suite started-at="2024-09-15T01:27:09 EET" name="Default suite" finished-at="2024-09-15T01:27:20 EET" duration-ms="10562">
     <groups>
     </groups>
-    <test started-at="2024-09-14T15:45:10 EET" name="Default test" finished-at="2024-09-14T15:45:31 EET" duration-ms="20988">
+    <test started-at="2024-09-15T01:27:09 EET" name="Default test" finished-at="2024-09-15T01:27:20 EET" duration-ms="10562">
       <class name="Ex.WebsiteTest">
-        <test-method is-config="true" signature="mySetup()[pri:0, instance:Ex.WebsiteTest@1817f1eb]" started-at="2024-09-14T15:45:10 EET" name="mySetup" finished-at="2024-09-14T15:45:12 EET" duration-ms="1572" status="PASS">
+        <test-method is-config="true" signature="mySetup()[pri:0, instance:Ex.WebsiteTest@3a3e78f]" started-at="2024-09-15T01:27:09 EET" name="mySetup" finished-at="2024-09-15T01:27:11 EET" duration-ms="1803" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- mySetup -->
-        <test-method signature="CreateAnAccount()[pri:1, instance:Ex.WebsiteTest@1817f1eb]" started-at="2024-09-14T15:45:12 EET" name="CreateAnAccount" finished-at="2024-09-14T15:45:17 EET" duration-ms="5133" status="FAIL">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[expected [Thank you for registering with Main Website Store.] but found []]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [Thank you for registering with Main Website Store.] but found []
-at org.testng.Assert.fail(Assert.java:99)
-at org.testng.Assert.failNotSame(Assert.java:1033)
-at org.testng.Assert.assertSame(Assert.java:981)
-at org.testng.Assert.assertSame(Assert.java:992)
-at Ex.WebsiteTest.CreateAnAccount(WebsiteTest.java:123)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:794)
-at org.testng.TestRunner.run(TestRunner.java:596)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
-at org.testng.SuiteRunner.run(SuiteRunner.java:276)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
-at org.testng.TestNG.runSuites(TestNG.java:1063)
-at org.testng.TestNG.run(TestNG.java:1031)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+        <test-method signature="addWomenItem()[pri:5, instance:Ex.WebsiteTest@3a3e78f]" started-at="2024-09-15T01:27:11 EET" name="addWomenItem" finished-at="2024-09-15T01:27:20 EET" duration-ms="8719" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- CreateAnAccount -->
-        <test-method signature="Logout()[pri:2, instance:Ex.WebsiteTest@1817f1eb]" started-at="2024-09-14T15:45:17 EET" name="Logout" finished-at="2024-09-14T15:45:18 EET" duration-ms="1572" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Logout -->
-        <test-method signature="LoginTest()[pri:3, instance:Ex.WebsiteTest@1817f1eb]" started-at="2024-09-14T15:45:18 EET" name="LoginTest" finished-at="2024-09-14T15:45:22 EET" duration-ms="3722" status="FAIL">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[expected [true] but found [false]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
-at org.testng.Assert.fail(Assert.java:99)
-at org.testng.Assert.failNotEquals(Assert.java:1037)
-at org.testng.Assert.assertEqualsImpl(Assert.java:140)
-at org.testng.Assert.assertEquals(Assert.java:122)
-at org.testng.Assert.assertEquals(Assert.java:819)
-at org.testng.Assert.assertEquals(Assert.java:829)
-at Ex.WebsiteTest.LoginTest(WebsiteTest.java:167)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:794)
-at org.testng.TestRunner.run(TestRunner.java:596)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
-at org.testng.SuiteRunner.run(SuiteRunner.java:276)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
-at org.testng.TestNG.runSuites(TestNG.java:1063)
-at org.testng.TestNG.run(TestNG.java:1031)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- LoginTest -->
-        <test-method signature="addMenItem()[pri:4, instance:Ex.WebsiteTest@1817f1eb]" started-at="2024-09-14T15:45:22 EET" name="addMenItem" finished-at="2024-09-14T15:45:31 EET" duration-ms="8939" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- addMenItem -->
+        </test-method> <!-- addWomenItem -->
       </class> <!-- Ex.WebsiteTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->

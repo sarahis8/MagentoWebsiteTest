@@ -6,8 +6,7 @@
       <class name="Ex.WebsiteTest">
         <methods>
           <include name="mySetup"/>
-          <include name="CreateAnAccount"/>
-          <include name="LoginTest"/>
+          <include name="addWomenItem"/>
         </methods>
       </class> <!-- Ex.WebsiteTest -->
     </classes>
